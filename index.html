@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EventMe — Interactive Event Timeline</title>
+  <meta name="description" content="EventMe is an interactive event timeline experience for conferences and live events." />
+  <style>
+    :root { --bg:#0b0f14; --card:#111824; --text:#e8eef7; --muted:#9fb0c3; --accent:#5ad1ff; }
+    *{ box-sizing:border-box; }
+    body{ margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:radial-gradient(1200px 600px at 30% -10%, rgba(90,209,255,.18), transparent 50%), var(--bg); color:var(--text); }
+    .wrap{ max-width:980px; margin:0 auto; padding:48px 20px; }
+    .badge{ display:inline-block; padding:6px 10px; border:1px solid rgba(90,209,255,.35); color:var(--accent); border-radius:999px; font-size:12px; letter-spacing:.3px; }
+    h1{ margin:16px 0 8px; font-size:40px; line-height:1.1; }
+    p{ margin:10px 0; color:var(--muted); font-size:16px; line-height:1.6; }
+    .grid{ display:grid; grid-template-columns:1fr; gap:14px; margin-top:28px; }
+    @media(min-width:860px){ .grid{ grid-template-columns:1fr 1fr; } }
+    .card{ background:rgba(17,24,36,.78); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:18px; }
+    .card h3{ margin:0 0 8px; font-size:16px; }
+    .card p{ margin:0; font-size:14px; }
+    .cta{ margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; }
+    a.btn{ display:inline-block; padding:11px 14px; border-radius:12px; text-decoration:none; font-weight:600; }
+    .primary{ background:var(--accent); color:#001018; }
+    .secondary{ border:1px solid rgba(255,255,255,.14); color:var(--text); }
+    footer{ margin-top:40px; padding-top:18px; border-top:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:12px; }
+    code{ color:#cde9ff; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="badge">Proof of Presence</span>
+    <h1>EventMe</h1>
+    <p>
+      An interactive event timeline experience for conferences and live events —
+      show attendees what’s <strong>Now</strong>, what’s <strong>Next</strong>, and what’s <strong>Done</strong>.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>What it does</h3>
+        <p>Mobile-first timeline screen for event agendas, venues, and sessions — easy to display on screens or share as a link.</p>
+      </div>
+      <div class="card">
+        <h3>Status</h3>
+        <p>Landing page is live. Demo timeline will be added next.</p>
+      </div>
+      <div class="card">
+        <h3>Provided by</h3>
+        <p>Provided by <strong>Samira Mohammed Al Salman Foundation for Communications and Information Technology</strong>.</p>
+      </div>
+      <div class="card">
+        <h3>Contact</h3>
+        <p>Email: <a href="mailto:hello@eventme.live" class="secondary btn">hello@eventme.live</a></p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a class="btn primary" href="#" onclick="alert('Demo will be added next.'); return false;">View Demo (coming soon)</a>
+      <a class="btn secondary" href="https://github.com/badroneai" target="_blank" rel="noreferrer">GitHub</a>
+    </div>
+
+    <footer>
+      <div>Domain: <code>eventme.live</code></div>
+      <div>Last updated: 2026-02-07</div>
+    </footer>
+  </div>
+</body>
+</html>
