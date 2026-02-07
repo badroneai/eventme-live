@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventMe — 404</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <div class="page-404">
+    <div>
+      <h1 id="nf-title">الصفحة غير موجودة</h1>
+      <p id="nf-desc">عذراً، هذه الصفحة غير موجودة.</p>
+      <a href="/" class="btn btn-primary" id="nf-btn">العودة للرئيسية</a>
+    </div>
+  </div>
+  <script src="/assets/i18n.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      LangManager.init();
+      function render() {
+        const t = k => LangManager.t(k);
+        document.title = "EventMe — 404";
+        document.getElementById("nf-title").textContent = t("notFoundTitle");
+        document.getElementById("nf-desc").textContent = t("notFoundDesc");
+        document.getElementById("nf-btn").textContent = t("notFoundBtn");
+      }
+      LangManager.onLangChange(render);
+      render();
+    });
+  </script>
+</body>
+</html>

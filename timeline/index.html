@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventMe — الجدول الزمني</title>
+  <meta name="description" content="EventMe Timeline — تابع جلسات الفعالية مباشرة. اعرف ما يحدث الآن وما هو القادم.">
+  <link rel="canonical" href="https://eventme.live/timeline/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="EventMe — Event Timeline">
+  <meta property="og:description" content="Live event timeline — see what's happening now and what's next.">
+  <meta property="og:url" content="https://eventme.live/timeline/">
+  <meta property="og:image" content="https://eventme.live/assets/og.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EventMe — Event Timeline">
+  <meta name="twitter:description" content="Live event timeline — see what's happening now and what's next.">
+  <meta name="twitter:image" content="https://eventme.live/assets/og.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/assets/site.webmanifest">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body id="timeline-page">
+
+  <!-- ═══ Header ═══ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="tl-brand">
+        <a href="/" class="wordmark">Event<span>Me</span></a>
+        <a href="/" class="tl-back" id="tl-back">الصفحة الرئيسية</a>
+      </div>
+      <div class="header-actions">
+        <button id="tl-lang-toggle" class="lang-toggle" aria-label="Switch to English">
+          <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg>
+          <span class="lang-text">EN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ Event Info Bar ═══ -->
+  <div class="tl-event-bar">
+    <div class="container tl-event-inner">
+      <div class="tl-event-info">
+        <h1 id="tl-event-title">مؤتمر التقنية والابتكار ٢٠٢٥</h1>
+        <div class="tl-event-meta">
+          <span id="tl-venue">مركز الرياض الدولي للمؤتمرات</span>
+          <span>•</span>
+          <span id="tl-date">١٥ يناير ٢٠٢٥</span>
+        </div>
+      </div>
+      <div class="tl-event-actions">
+        <button id="tl-share-btn" class="tl-share-btn" aria-label="Share timeline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          <span class="share-text">مشاركة</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Clock Bar ═══ -->
+  <div class="tl-clock-bar">
+    <div class="container tl-clock-inner">
+      <div>
+        <span id="tl-time-label">الوقت الحالي</span>:
+        <span class="tl-clock" id="tl-clock">--:--:--</span>
+        <span class="tl-tz" id="tl-tz">توقيت الرياض (UTC+3)</span>
+      </div>
+      <div class="tl-updated">
+        <span id="tl-updated-label">آخر تحديث</span>:
+        <span id="tl-updated-time">--:--</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Controls ═══ -->
+  <div class="container tl-controls">
+    <div class="tl-filters">
+      <select id="tl-stage-filter" class="tl-select" aria-label="Filter by stage"></select>
+    </div>
+    <div class="tl-toggles">
+      <div class="tl-toggle-group">
+        <span id="tl-auto-label">تحديث تلقائي</span>
+        <button id="tl-auto-toggle" class="toggle-switch active" role="switch" aria-checked="true" aria-label="Auto refresh"></button>
+        <span id="tl-auto-state">مفعّل</span>
+      </div>
+      <div class="tl-toggle-group">
+        <span id="tl-venue-label">وضع الشاشة</span>
+        <button id="tl-venue-toggle" class="toggle-switch" role="switch" aria-checked="false" aria-label="Venue screen mode"></button>
+      </div>
+      <span id="tl-fullscreen-hint" style="font-size:var(--fs-xs);color:var(--c-text-muted);">اضغط F11 للشاشة الكاملة</span>
+    </div>
+  </div>
+
+  <!-- ═══ Timeline Body ═══ -->
+  <div class="tl-body">
+    <div class="container tl-layout">
+      <!-- Sidebar: NOW + NEXT -->
+      <aside class="tl-sidebar">
+        <div class="tl-sidebar-title" id="tl-sidebar-title">الآن والقادم</div>
+        <div id="tl-sidebar-cards"></div>
+      </aside>
+
+      <!-- Full Schedule -->
+      <main>
+        <div class="tl-schedule-title" id="tl-schedule-title">الجدول الكامل</div>
+        <div id="tl-schedule-cards"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ═══ Footer ═══ -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 EventMe</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/i18n.js"></script>
+  <script src="/assets/data.js"></script>
+  <script src="/assets/app.js"></script>
+</body>
+</html>
