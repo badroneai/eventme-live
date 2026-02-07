@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,7 +10,13 @@
     *{ box-sizing:border-box; }
     body{ margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:radial-gradient(1200px 600px at 30% -10%, rgba(90,209,255,.18), transparent 50%), var(--bg); color:var(--text); }
     .wrap{ max-width:980px; margin:0 auto; padding:48px 20px; }
+
+    .topbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .badge{ display:inline-block; padding:6px 10px; border:1px solid rgba(90,209,255,.35); color:var(--accent); border-radius:999px; font-size:12px; letter-spacing:.3px; }
+    .lang{ display:flex; gap:8px; align-items:center; }
+    button.langbtn{ background:transparent; border:1px solid rgba(255,255,255,.14); color:var(--text); padding:8px 10px; border-radius:12px; cursor:pointer; font-weight:600; }
+    button.langbtn[aria-pressed="true"]{ border-color: rgba(90,209,255,.55); color: var(--accent); }
+
     h1{ margin:16px 0 8px; font-size:40px; line-height:1.1; }
     p{ margin:10px 0; color:var(--muted); font-size:16px; line-height:1.6; }
     .grid{ display:grid; grid-template-columns:1fr; gap:14px; margin-top:28px; }
@@ -24,45 +30,123 @@
     .secondary{ border:1px solid rgba(255,255,255,.14); color:var(--text); }
     footer{ margin-top:40px; padding-top:18px; border-top:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:12px; }
     code{ color:#cde9ff; }
+
+    /* RTL tweaks */
+    html[dir="rtl"] .cta{ justify-content:flex-start; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <span class="badge">Proof of Presence</span>
+    <div class="topbar">
+      <span class="badge" data-i18n="badge">Proof of Presence</span>
+      <div class="lang" aria-label="Language">
+        <button class="langbtn" id="btn-en" type="button" aria-pressed="true">EN</button>
+        <button class="langbtn" id="btn-ar" type="button" aria-pressed="false">AR</button>
+      </div>
+    </div>
+
     <h1>EventMe</h1>
-    <p>
+    <p data-i18n="hero">
       An interactive event timeline experience for conferences and live events —
       show attendees what’s <strong>Now</strong>, what’s <strong>Next</strong>, and what’s <strong>Done</strong>.
     </p>
 
     <div class="grid">
       <div class="card">
-        <h3>What it does</h3>
-        <p>Mobile-first timeline screen for event agendas, venues, and sessions — easy to display on screens or share as a link.</p>
+        <h3 data-i18n="what_title">What it does</h3>
+        <p data-i18n="what_body">Mobile-first timeline screen for event agendas, venues, and sessions — easy to display on screens or share as a link.</p>
       </div>
       <div class="card">
-        <h3>Status</h3>
-        <p>Landing page is live. Demo timeline will be added next.</p>
+        <h3 data-i18n="status_title">Status</h3>
+        <p data-i18n="status_body">Landing page is live. Demo timeline will be added next.</p>
       </div>
       <div class="card">
-        <h3>Provided by</h3>
-        <p>Provided by <strong>Samira Mohammed Al Salman Foundation for Communications and Information Technology</strong>.</p>
+        <h3 data-i18n="provided_title">Provided by</h3>
+        <p data-i18n="provided_body">Provided by <strong>Samira Mohammed Al Salman Foundation for Communications and Information Technology</strong>.</p>
       </div>
       <div class="card">
-        <h3>Contact</h3>
-        <p>Email: <a href="mailto:hello@eventme.live" class="secondary btn">hello@eventme.live</a></p>
+        <h3 data-i18n="contact_title">Contact</h3>
+        <p><span data-i18n="email_label">Email</span>: <a href="mailto:hello@eventme.live" class="secondary btn">hello@eventme.live</a></p>
       </div>
     </div>
 
     <div class="cta">
-      <a class="btn primary" href="#" onclick="alert('Demo will be added next.'); return false;">View Demo (coming soon)</a>
-      <a class="btn secondary" href="https://github.com/badroneai" target="_blank" rel="noreferrer">GitHub</a>
+      <a class="btn primary" href="#" id="demoLink" data-i18n="demo_btn">View Demo (coming soon)</a>
+      <a class="btn secondary" href="https://github.com/badroneai" target="_blank" rel="noreferrer" data-i18n="github_btn">GitHub</a>
     </div>
 
     <footer>
-      <div>Domain: <code>eventme.live</code></div>
-      <div>Last updated: 2026-02-07</div>
+      <div><span data-i18n="domain_label">Domain</span>: <code>eventme.live</code></div>
+      <div><span data-i18n="updated_label">Last updated</span>: 2026-02-07</div>
     </footer>
   </div>
+
+  <script>
+    const dict = {
+      en: {
+        badge: 'Proof of Presence',
+        hero: "An interactive event timeline experience for conferences and live events — show attendees what’s <strong>Now</strong>, what’s <strong>Next</strong>, and what’s <strong>Done</strong>.",
+        what_title: 'What it does',
+        what_body: 'Mobile-first timeline screen for event agendas, venues, and sessions — easy to display on screens or share as a link.',
+        status_title: 'Status',
+        status_body: 'Landing page is live. Demo timeline will be added next.',
+        provided_title: 'Provided by',
+        provided_body: 'Provided by <strong>Samira Mohammed Al Salman Foundation for Communications and Information Technology</strong>.',
+        contact_title: 'Contact',
+        email_label: 'Email',
+        demo_btn: 'View Demo (coming soon)',
+        github_btn: 'GitHub',
+        domain_label: 'Domain',
+        updated_label: 'Last updated',
+        demo_alert: 'Demo will be added next.'
+      },
+      ar: {
+        badge: 'إثبات وجود',
+        hero: 'تجربة جدول فعاليات تفاعلي للمؤتمرات والفعاليات المباشرة — اعرض للحضور ما هو <strong>الآن</strong>، وما <strong>التالي</strong>، وما <strong>انتهى</strong>.',
+        what_title: 'ماذا تقدم',
+        what_body: 'شاشة جدول فعاليات تفاعلية مهيّأة للجوال لعرض أجندة الحدث والقاعات والجلسات — سهلة للعرض على الشاشات أو للمشاركة كرابط.',
+        status_title: 'الحالة',
+        status_body: 'صفحة التعريف تعمل. سيتم إضافة ديمو الجدول قريبًا.',
+        provided_title: 'مقدمة من',
+        provided_body: 'مقدمة من <strong>مؤسسة سميرة محمد السلمان للاتصالات وتقنية المعلومات</strong>.',
+        contact_title: 'التواصل',
+        email_label: 'البريد',
+        demo_btn: 'عرض الديمو (قريبًا)',
+        github_btn: 'GitHub',
+        domain_label: 'النطاق',
+        updated_label: 'آخر تحديث',
+        demo_alert: 'سيتم إضافة الديمو قريبًا.'
+      }
+    };
+
+    function setLang(lang){
+      const d = dict[lang] || dict.en;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (d[k] != null) el.innerHTML = d[k];
+      });
+
+      const enBtn = document.getElementById('btn-en');
+      const arBtn = document.getElementById('btn-ar');
+      enBtn.setAttribute('aria-pressed', lang === 'en');
+      arBtn.setAttribute('aria-pressed', lang === 'ar');
+
+      // update demo click message
+      const demo = document.getElementById('demoLink');
+      demo.onclick = (e) => { e.preventDefault(); alert(d.demo_alert); };
+
+      try{ localStorage.setItem('eventme_lang', lang); }catch(_){ }
+    }
+
+    document.getElementById('btn-en').addEventListener('click', () => setLang('en'));
+    document.getElementById('btn-ar').addEventListener('click', () => setLang('ar'));
+
+    const saved = (() => { try{ return localStorage.getItem('eventme_lang'); }catch(_){ return null; } })();
+    const defaultLang = saved || ((navigator.language || '').toLowerCase().startsWith('ar') ? 'ar' : 'en');
+    setLang(defaultLang);
+  </script>
 </body>
 </html>
